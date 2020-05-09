@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pomodoro/static/css/main.142c0b23.chunk.css",
+    "main.js": "/pomodoro/static/js/main.82f83334.chunk.js",
+    "main.js.map": "/pomodoro/static/js/main.82f83334.chunk.js.map",
+    "runtime~main.js": "/pomodoro/static/js/runtime~main.5f1f8454.js",
+    "runtime~main.js.map": "/pomodoro/static/js/runtime~main.5f1f8454.js.map",
+    "static/js/2.4e8f576d.chunk.js": "/pomodoro/static/js/2.4e8f576d.chunk.js",
+    "static/js/2.4e8f576d.chunk.js.map": "/pomodoro/static/js/2.4e8f576d.chunk.js.map",
+    "index.html": "/pomodoro/index.html",
+    "precache-manifest.771bea387b928554ee26e22f20de1bcb.js": "/pomodoro/precache-manifest.771bea387b928554ee26e22f20de1bcb.js",
+    "service-worker.js": "/pomodoro/service-worker.js",
+    "static/css/main.142c0b23.chunk.css.map": "/pomodoro/static/css/main.142c0b23.chunk.css.map"
+  }
+}
