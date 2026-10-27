@@ -1,0 +1,12 @@
+{
+  "name": "Pomodoro.work timer",
+  "short_name": "Pomodoro",
+  "start_url": "/pomodoro/",
+  "scope": "/pomodoro/",
+  "display": "standalone",
+  "background_color": "#f44336",
+  "theme_color": "#f44336",
+  "icons": [
+    { "src": "/pomodoro/assets/img/icon.png", "sizes": "any", "type": "image/png" }
+  ]
+}

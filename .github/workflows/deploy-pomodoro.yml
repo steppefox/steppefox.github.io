@@ -1,0 +1,62 @@
+name: Deploy pomodoro
+
+on:
+  push:
+    branches: [source]
+    paths:
+      - 'pomodoro/**'
+      - '.github/workflows/deploy-pomodoro.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-pomodoro
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: source
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: pomodoro/package-lock.json
+
+      - name: Build
+        working-directory: pomodoro
+        run: |
+          npm ci
+          npm run build
+
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          path: master-out
+
+      - name: Replace pomodoro/ with build output
+        run: |
+          rm -rf master-out/pomodoro
+          mkdir -p master-out/pomodoro
+          cp -r pomodoro/dist/. master-out/pomodoro/
+
+      - name: Commit and push
+        working-directory: master-out
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A pomodoro
+          if git diff --cached --quiet; then
+            echo "No changes to deploy"
+            exit 0
+          fi
+          git commit -m "Deploy pomodoro from ${GITHUB_SHA::7}"
+          git push origin HEAD:master
